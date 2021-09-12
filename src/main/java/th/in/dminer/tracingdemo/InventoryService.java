@@ -10,8 +10,8 @@ public class InventoryService {
     @Autowired
     private Tracer tracer;
 
-    public void createOrder(Span checkoutSpan) throws InterruptedException {
-        Span span = tracer.buildSpan("create-order").asChildOf(checkoutSpan).start();
+    public void createOrder(Span parentSpan) throws InterruptedException {
+        Span span = tracer.buildSpan("create-order").asChildOf(parentSpan).start();
         Thread.sleep((long)(Math.random() * 500));
         span.finish();
     }

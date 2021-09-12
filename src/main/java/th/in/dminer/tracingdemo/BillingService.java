@@ -10,8 +10,8 @@ public class BillingService {
     @Autowired
     private Tracer tracer;
 
-    public void payment(Span checkoutSpan) throws InterruptedException {
-        Span span = tracer.buildSpan("payment").asChildOf(checkoutSpan).start();
+    public void payment(Span parentSpan) throws InterruptedException {
+        Span span = tracer.buildSpan("payment").asChildOf(parentSpan).start();
         Thread.sleep((long)(Math.random() * 500));
         span.finish();
     }

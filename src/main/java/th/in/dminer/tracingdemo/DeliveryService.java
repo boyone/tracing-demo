@@ -13,8 +13,8 @@ public class DeliveryService {
     @Autowired
     private LogisticsService logisticsService;
 
-    public void arrangeDelivery(Span checkoutSpan) throws InterruptedException {
-        Span span = tracer.buildSpan("arrange-delivery").asChildOf(checkoutSpan).start();
+    public void arrangeDelivery(Span parentSpan) throws InterruptedException {
+        Span span = tracer.buildSpan("arrange-delivery").asChildOf(parentSpan).start();
         Thread.sleep((long)(Math.random() * 500));
         logisticsService.transport(span);
         span.finish();
