@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TracingDemoApplication {
 
 	@RequestMapping("/checkout")
-	public String home() {
+	public String checkout() {
+
 		return "You have successfully checked out your shopping cart.";
 	}
 
