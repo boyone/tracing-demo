@@ -12,10 +12,22 @@ public class EShopController {
     @Autowired
     private Tracer tracer;
 
+    @Autowired
+    private InventoryService inventoryService;
+
+    @Autowired
+    private BillingService billingService;
+
+    @Autowired
+    private DeliveryService deliveryService;
+
     @RequestMapping("/checkout")
-    public String checkout() {
-        Span span = tracer.buildSpan("checkout").start();
-        span.finish();
+    public String checkout() throws Exception {
+        Span checkoutSpan = tracer.buildSpan("checkout").start();
+        inventoryService.createOrder(checkoutSpan);
+        billingService.payment(checkoutSpan);
+        deliveryService.arrangeDelivery(checkoutSpan);
+        checkoutSpan.finish();
         return "You have successfully checked out your shopping cart.";
     }
 }

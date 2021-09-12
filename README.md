@@ -1,5 +1,11 @@
 # Tracing Demo
 
+## Build liveproject-tracing
+
+```shell
+mvn clean package
+```
+
 ## Create Docker Image
 
 ```shell
@@ -7,13 +13,15 @@ mvn package
 docker build -t boyone/liveproject-tracing:v1.1 .
 ```
 
-> 1.1, 1.2
+> 1.1, 1.2, 2.1
 
 ## Run EShop
 
 ```shell
 docker run -d --name demo -p 80:8080 boyone/liveproject-tracing:v1.1
 ```
+
+> 1.1, 1.2, 2.1
 
 ## Run Jaeger
 
